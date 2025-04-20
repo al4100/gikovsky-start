@@ -50,12 +50,20 @@
         }
     </style>
     <script>
+        function translateCurrentPage() {
+            const currentUrl = prompt("Paste the link you want to translate:");
+            if (currentUrl) {
+                const translateUrl = 'https://translate.google.com/translate?sl=auto&tl=en&u=' + encodeURIComponent(currentUrl);
+                window.open(translateUrl, '_blank');
+            }
+        }
+
         function translatePage() {
-            window.location.href = 'https://translate.google.com/translate?sl=auto&tl=ru&u=' + encodeURIComponent(window.location.href);
+            window.location.href = 'https://translate.google.com/translate?sl=auto&tl=en&u=' + encodeURIComponent(window.location.href);
         }
 
         function searchShop() {
-            const query = prompt("Что ищем через \shop?");
+            const query = prompt("Search with \\shop:");
             if (query) {
                 window.location.href = 'https://kagi.com/search?q=\\shop ' + encodeURIComponent(query);
             }
@@ -67,6 +75,10 @@
             body.style.backgroundColor = isDark ? "#ffffff" : "#0e0e0e";
             body.style.color = isDark ? "#000000" : "#ffffff";
         }
+
+        function openInSafari() {
+            alert('To open in Safari: tap the Share button and choose “Open in Safari”');
+        }
     </script>
 </head>
 <body>
@@ -74,15 +86,17 @@
 
     <button onclick="window.location.href='https://kagi.com'">Kagi Search</button>
     <button onclick="window.location.href='https://www.startpage.com'">Startpage</button>
-    <button onclick="translatePage()">Перевести страницу</button>
-    <button onclick="searchShop()">Поиск через \shop</button>
-    <button class="theme-toggle" onclick="toggleTheme()">Переключить тему</button>
+    <button onclick="translatePage()">Translate This Page</button>
+    <button onclick="searchShop()">Search via \shop</button>
+    <button onclick="translateCurrentPage()">Paste a Link to Translate</button>
+    <button onclick="openInSafari()">Open in Safari</button>
+    <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
 
     <div class="info">
         <iframe src="https://wtfismyip.com/text" style="border:none;height:35px;width:300px;color:white;"></iframe><br>
         <iframe src="https://wttr.in/?format=3" style="border:none;height:35px;width:300px;color:white;"></iframe>
     </div>
 
-    <div class="version">Версия: 1.5</div>
+    <div class="version">Version: 1.5</div>
 </body>
 </html>
