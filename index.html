@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Gikovsky Start</title>
+    <title>Start</title>
     <style>
         body {
             background-color: #0e0e0e;
@@ -11,28 +11,64 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding-top: 50px;
+            padding-top: 30px;
         }
         h1 {
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
-        a {
+        button {
+            background-color: #222;
             color: #00ffcc;
-            text-decoration: none;
-            margin: 10px 0;
-            font-size: 18px;
+            border: 1px solid #00ffcc;
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
         }
-        a:hover {
-            text-decoration: underline;
+        button:hover {
+            background-color: #00ffcc;
+            color: #000;
+        }
+        .info {
+            margin-top: 30px;
+            font-size: 14px;
+        }
+        .theme-toggle {
+            margin-top: 20px;
         }
     </style>
+    <script>
+        function translatePage() {
+            window.location.href = 'https://translate.google.com/translate?sl=auto&tl=ru&u=' + encodeURIComponent(window.location.href);
+        }
+
+        function searchShop() {
+            const query = prompt("Что ищем через \shop?");
+            if (query) {
+                window.location.href = 'https://kagi.com/search?q=\\shop ' + encodeURIComponent(query);
+            }
+        }
+
+        function toggleTheme() {
+            const body = document.body;
+            const isDark = body.style.backgroundColor === "rgb(14, 14, 14)";
+            body.style.backgroundColor = isDark ? "#ffffff" : "#0e0e0e";
+            body.style.color = isDark ? "#000000" : "#ffffff";
+        }
+    </script>
 </head>
 <body>
-    <h1>Gikovsky Start</h1>
-    <a href="https://kagi.com">Kagi Search</a>
-    <a href="https://lingva.ml">Lingva Translate</a>
-    <a href="https://deepl.com/translator">DeepL Translate</a>
-    <a href="https://omnivore.app">Omnivore Reader</a>
-    <a href="https://web.telegram.org">Telegram Web</a>
+    <h1>Start</h1>
+
+    <button onclick="window.location.href='https://kagi.com'">Kagi Search</button>
+    <button onclick="window.location.href='https://www.startpage.com'">Startpage</button>
+    <button onclick="translatePage()">Перевести страницу</button>
+    <button onclick="searchShop()">Поиск через \shop</button>
+    <button class="theme-toggle" onclick="toggleTheme()">Переключить тему</button>
+
+    <div class="info">
+        <iframe src="https://wtfismyip.com/text" style="border:none;height:30px;width:300px;color:white;"></iframe><br>
+        <iframe src="https://wttr.in/?format=3" style="border:none;height:30px;width:300px;color:white;"></iframe>
+    </div>
 </body>
 </html>
